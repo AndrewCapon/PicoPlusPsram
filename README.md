@@ -2,7 +2,7 @@
 
 Classes for accessing PSRAM on a Pimoroni Pico Plus 2.
 
-This is basically a wrapper arounf `lwmem` with a C++ BaseClass to inhertit from for any classes you want to dynamically store in PSRAM, and a C++ Allocator.
+This is basically a wrapper around `lwmem` with a C++ BaseClass to inhertit from for any classes you want to dynamically store in PSRAM, and a C++ Allocator.
 
 ## Basics
 
@@ -75,6 +75,16 @@ std::vector<int, PicoPlusPsram::Allocator<int>> vInPsram;
 vInPsram.push_back(1);
 vInPsram.push_back(2);
 ```
+
+## adding to your own projects
+
+`PicoPlusPsram.h" and 'PicoPlusPsram.cpp' need to be added to your project.
+
+`lwmem` also needs adding to your project from https://github.com/MaJerle/lwmem 
+
+If you want the available memory functionality then `LWMEM_CFG_ENABLE_STATS` has to be set to 1
+
+In this test project this is done with the file `lwmem_opts_ppp.h", and `set(LWMEM_OPTS_FILE ${CMAKE_CURRENT_LIST_DIR}/lwmem_opts_ppp.h)` in the CMakeLists.txt
 
 ## Notes: 
 
