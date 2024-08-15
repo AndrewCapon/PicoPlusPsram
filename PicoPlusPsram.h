@@ -5,6 +5,51 @@
 class PicoPlusPsram
 {
   public:
+    class BaseClass
+    {
+    public:
+      BaseClass(void) = default;
+      ~BaseClass(void) = default;
+
+      void *operator new(size_t size)
+      {
+        void * p = lwmem_malloc(size);
+        return p;
+      }
+
+      void operator delete(void *ptr)
+      {
+        lwmem_free(ptr);
+      }
+    };
+
+    template<class T>
+    struct Allocator
+    {
+        typedef T value_type;
+    
+        Allocator() = default;
+    
+        template<class U>
+        constexpr Allocator(const Allocator <U>&) noexcept {}
+    
+        [[nodiscard]] T* allocate(std::size_t n)
+        {
+            if (auto p = static_cast<T*>(lwmem_malloc(n * sizeof(T))))
+              return p;
+            else
+              return nullptr;
+        }
+    
+        void deallocate(T* p, std::size_t n) noexcept
+        {
+            lwmem_free(p);
+        }
+        bool operator==(const Allocator <T>&) { return true;}
+        bool operator!=(const Allocator <T>&) { return false;}
+    };
+  
+
     PicoPlusPsram(const PicoPlusPsram&) = delete;
     PicoPlusPsram& operator = (const PicoPlusPsram&) = delete;
 
