@@ -18,7 +18,7 @@ size_t uMemorySize = ps.GetMemorySize();
 
 if `uMemorySize` is 0, you have no PSRAM or something terrible has gone wrong.
 
-if you need to know how mush PSRAM you still have available:
+if you need to know how much PSRAM you still have available:
 ```
 PicoPlusPsram &ps = PicoPlusPsram::getInstance();
 
