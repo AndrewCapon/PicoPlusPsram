@@ -2,7 +2,7 @@
 
 Classes for accessing PSRAM on a Pimoroni Pico Plus 2.
 
-This is basically a wrapper around `lwmem` with a C++ BaseClass to inhertit from for any classes you want to dynamically store in PSRAM, and a C++ Allocator.
+This is basically a wrapper around `lwmem` with a C++ BaseClass to inherit from for any classes you want to dynamically store in PSRAM, and a C++ Allocator.
 
 ## Basics
 
