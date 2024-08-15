@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.12)
 
+set(PICO_PLATFORM rp2350)
+set(LWMEM_OPTS_FILE ${CMAKE_CURRENT_LIST_DIR}/lwmem_opts_ppp.h)
+
 # Pull in SDK (must be before project)
 include(pico_sdk_import.cmake)
-
+ 
 project(PicoPlusPsram C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
@@ -10,7 +13,7 @@ set(CMAKE_CXX_STANDARD 17)
 if (PICO_SDK_VERSION_STRING VERSION_LESS "2.0.0")
     message(FATAL_ERROR "Raspberry Pi Pico SDK version 2.1.0 (or later) required. Your version is ${PICO_SDK_VERSION_STRING}")
 endif()
-
+ 
 # Initialize the SDK
 pico_sdk_init()
 
@@ -20,12 +23,17 @@ add_compile_options(-Wall
         -Wno-maybe-uninitialized
         )
 
+         
+add_subdirectory(lwmem)
+
 add_executable(PicoPlusPsram
         PicoPlusPsram.cpp
+        Test.cpp
         )
 
 target_link_libraries(PicoPlusPsram
         pico_stdlib              # for core functionality
+        lwmem
         )
 
 # create map/bin/hex file etc.

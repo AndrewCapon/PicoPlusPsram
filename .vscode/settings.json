@@ -1,0 +1,88 @@
+{
+      // These settings tweaks to the cmake plugin will ensure
+    // that you debug using cortex-debug instead of trying to launch
+    // a Pico binary on the host
+    "cmake.statusbar.advanced": {
+      "debug": {
+          "visibility": "hidden"
+      },
+      "launch": {
+          "visibility": "hidden"
+      },
+      "build": {
+          "visibility": "hidden"
+      },
+      "buildTarget": {
+          "visibility": "hidden"
+      }
+  },
+  "cmake.buildBeforeRun": true,
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "cmake.configureSettings": {
+    "PICO_DEOPTIMIZED_DEBUG" : "1"
+  },
+  
+  "files.associations": {
+    "tusb.h": "c",
+    "board.h": "c",
+    "cyw43_arch.h": "c",
+    "vector": "cpp",
+    "unordered_map": "cpp",
+    "array": "cpp",
+    "atomic": "cpp",
+    "bit": "cpp",
+    "*.tcc": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "cmath": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "cstdarg": "cpp",
+    "cstddef": "cpp",
+    "cstdint": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "deque": "cpp",
+    "map": "cpp",
+    "exception": "cpp",
+    "algorithm": "cpp",
+    "functional": "cpp",
+    "iterator": "cpp",
+    "memory": "cpp",
+    "memory_resource": "cpp",
+    "numeric": "cpp",
+    "optional": "cpp",
+    "random": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "system_error": "cpp",
+    "tuple": "cpp",
+    "type_traits": "cpp",
+    "utility": "cpp",
+    "initializer_list": "cpp",
+    "iosfwd": "cpp",
+    "limits": "cpp",
+    "new": "cpp",
+    "ostream": "cpp",
+    "ranges": "cpp",
+    "stdexcept": "cpp",
+    "streambuf": "cpp",
+    "cinttypes": "cpp",
+    "typeinfo": "cpp",
+    "cassert": "cpp",
+    "lwmem_opts.h": "c"
+  },
+  "cmake.configureArgs": [
+    "-DPICO_PLATFORM=rp2350",
+    //"-DPICO_BOARD=pico_w",
+    // "-DWIFI_SSID='ssid'",
+    // "-DWIFI_PASSWORD=pass",
+    // "-DFREERTOS_KERNEL_PATH=/Users/andrewcapon/Development/pico/FreeRTOS-Kernel"
+  ],
+  "cortex-debug.variableUseNaturalFormat": true,
+  "cmake.parseBuildDiagnostics": true,
+  "cmake.loggingLevel": "info",
+  "cmake.loadCompileCommands": false
+}
