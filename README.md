@@ -95,3 +95,7 @@ The c++ allocation and new stuff should really be thowing exceptions, but this s
 `lwmem` from: https://github.com/MaJerle/lwmem and is a submodule so make sure you fetch that.
 
 `Test.cpp` and `TestClass.h` test out the functionality, best to start there.
+
+This is not thread safe at the moment, only use it from one core!
+
+I will update it to be thread safe...
