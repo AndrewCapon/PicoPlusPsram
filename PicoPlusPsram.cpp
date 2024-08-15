@@ -10,6 +10,7 @@
 
 #define PSRAM_LOCATION _u(0x11000000)
 
+// Private constructor
 PicoPlusPsram::PicoPlusPsram(void)
 {
   // initialise psram

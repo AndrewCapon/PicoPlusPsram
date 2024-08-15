@@ -5,6 +5,8 @@
 class PicoPlusPsram
 {
   public:
+    // BaseClass
+    //  Inherit from this to allocate dynamic objects in psram
     class BaseClass
     {
     public:
@@ -23,6 +25,8 @@ class PicoPlusPsram
       }
     };
 
+    // Allocator
+    //  Allocator for allocating in psram
     template<class T>
     struct Allocator
     {
@@ -49,47 +53,55 @@ class PicoPlusPsram
         bool operator!=(const Allocator <T>&) { return false;}
     };
   
-
+    // No public access to constructor/destructor
     PicoPlusPsram(const PicoPlusPsram&) = delete;
     PicoPlusPsram& operator = (const PicoPlusPsram&) = delete;
 
+    // Get singleton instance
     static PicoPlusPsram& getInstance()
     {
       static PicoPlusPsram instance;       
       return instance;
     }
 
+    // Get the total psram memory size
     size_t GetMemorySize(void)
     {
       return m_uMemorySize;
     }
 
+    // Malloc psram memory
     void *Malloc(size_t uSize)
     {
       return lwmem_malloc_ex(nullptr, nullptr, uSize);
     }
 
+    // Calloc psram memory
     void *Calloc(size_t uItems, size_t uSize) 
     {
       return lwmem_calloc_ex(nullptr, nullptr, uItems, uSize);
     }
 
+    // Realloc psram memory
     void Realloc(void * const pMem, const size_t uSize)
     {
       lwmem_realloc_ex(nullptr, nullptr, pMem, uSize);
     }
 
+    // Free psram memory
     void Free(void * const pMem)
     {
       lwmem_free_ex(nullptr, pMem);
     }
 
+    // Get the size of an allocated block
     size_t GetSize(void *pMem)
     {
       return lwmem_get_size_ex(nullptr, pMem);
     }
 
 #if LWMEM_CFG_ENABLE_STATS
+    // Gets available bytes
     size_t GetAvailableBytes(void)
     {
       lwmem_get_stats_ex(nullptr, &m_lwmemStats);
